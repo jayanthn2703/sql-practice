@@ -1,0 +1,152 @@
+-- Write a query to convert all customer names to uppercase.
+--=====select upper(Customer_Name) from orders
+-- Extract the first 5 characters from Product_Name.
+--=====select substr(product_name,1,5) as first_five from orders
+-- Find the length of each Customer_Name.
+--=====select customer_name,length(customer_name)as length_name from ORDERS;
+-- Replace the word "Rice" with "Premium Rice" in Product_Name.
+--=====select replace(product_name,'Rice','Premium rice')as updated_value from orders;
+--=====select customer_name,trim(customer_name)as trimmed_names from orders;
+-- Concatenate First_Name and Last_Name as Full_Name.
+--=====select first_name,last_name,first_name||last_name as full_name from orders;
+-- Find customers whose names start with 'A'.
+--=====SELECT * from orders where customer_name like'A%';
+-- Extract the domain name from Email_ID.
+--======??????????
+-- Find the position of '@' in Email_ID.
+--====select email_id,charindex('@',email_id) from orders;
+-- Reverse the Product_Name.
+--=====Convert the first letter of each word in Product_Name to uppercase.
+-- Extract the last 3 characters from Order_ID.
+--=====SELECT ORDER_ID,RIGHT(CAST(ORDER_ID AS VARCHAR(20)),3) AS THREE_LAST FROM ORDERS;
+-- Count how many times letter 'a' appears in Customer_Name.
+--=====SELECT CUSTOMER_NAME,length(CUSTOMER_NAME)-LENgth(Replace(CUSTOMER_NAME,'a',''))as replaced_value from orders;
+-- Mask the last 4 digits of a phone number.
+--=====select phone_num,legth((phone_num)-4)+'****' as masked_num from orders;
+-- Split Full_Name into First_Name and Last_Name.
+--=====???????????
+-- Remove all special characters from Product_Code.
+--=====select product_code,replace(replace(product_code,'-',''),'@','') as cleaned_code from orders;
+-- Compare two columns ignoring case sensitivity.
+--====SELECT *FROM Orders WHERE Column1 = Column2;????????
+-- Find customers whose name contains 'kumar'.
+--=====select* from orders where CUSTOMER_NAME like'%kumar%';
+-- Pad Order_ID with leading zeros to make it 6 digits.
+--=====select order_id,lpad(order_id,6,'0') as padded_id from orders;
+-- Extract substring between two characters.
+--======select unit_price,round(unit_price,2)as rounded from orders;
+--=============NUMERICAL FUNCTIONS==================
+-- Find total sales per order.
+--====select unit_price,quantity,unit_price*Quantity as sales from orders;
+-- Calculate average order value
+--=====select 
+--     PRODUCT_NAME, avg(unit_price*quantity)as avg_order_value 
+--     from orders 
+--     group by(product_name);
+-- Find highest product price.=========
+--======select max(unit_price)as max_rate 
+-- from orders;
+-- Find lowest product price
+-- select min(unit_price)as min_rate 
+-- from orders;
+-- Calculate percentage discount applied
+-- Find modulus of Quantity divided by 2
+--=======select quantity,quantity%2 as modulus from orders;
+-- Convert negative values to positive
+--=====select quantity,abs(quantity) as positive_values from orders;
+-- Truncate price without rounding
+--====== select unit_price,TRUNCATE(unit_price,2) as truncateee_unit from orders;???????????
+-- Find square root of total sales
+--===== select sqrt(sum(unit_price*Quantity)) as sqaure_root from orders;
+-- Calculate exponential value of a number
+-- =====??????????
+-- Calculate power of 2^5
+--======select power(2,5)as ab from dual;
+-- Find absolute difference between two prices
+--=====????????????
+-- Calculate sales growth percentage.
+-- Find random number between 1 and 100.
+--======select floor(1+(rand()*100)) as rands_num;
+-- Divide total sales by number of orders.
+-- Find ceiling value of price.
+--======select ceil(unit_price)as ceiling from orders;
+-- Find floor value of price.
+--======select floor(unit_price)as floori from orders;
+-- Convert decimal to integer.
+-- Calculate compound interest.
+--=================DATE FUNCTIONS=====================
+-- Extract year from Order_Date.
+--====SELECT ORDER_DATE,EXTRACT(YEAR FROM Order_Date)AS YEAR FROM ORDERS; 
+-- Extract month from Order_Date.
+--====SELECT ORDER_DATE,EXTRACT(MONTH FROM Order_Date)AS MONTH FROM ORDERS; 
+-- Extract day from Order_Date.
+--=====SELECT ORDER_DATE,EXTRACT(DAY FROM Order_Date)AS day FROM ORDERS; 
+-- Find current date.
+--====SELECT SYSDATE;
+-- Find current timestamp.
+--====SELECT SYSTIMESTAMP;
+-- Add 7 days to Order_Date.
+--====SELECT SYSDATE,SYSDATE+7;
+-- Subtract 30 days from Order_Date.
+--====SELECT ORDER_DATE,ORDER_DATE-30 FROM ORDERS;
+-- Find difference between two dates.
+--====SELECT ORDER_DATE,SYSDATE,SYSDATE-ORDER_DATE AS DIFFRENCE FROM ORDERS;
+-- Find number of months between two dates.
+--=====SELECT ORDER_DATE,SYSDATE,MONTHS_BETWEEN(SYSDATE,ORDER_DATE) AS DIFFRENCE_MONTHS FROM ORDERS;
+-- Find last day of the month.
+--=====SELECT ORDER_DATE,LAST_DAY(ORDER_DATE) AS END_OF_MONTH FROM ORDERS;
+-- Get first day of the year.
+--=====SELECT TRUNC(SYSDATE,'YEAR') AS FIRST_DAY_YEAR FROM ORDERS;
+-- Format date as 'DD-MM-YYYY'.
+--=====SELECT ORDER_DATE,TO_CHAR(ORDER_DATE,'DD-MM-YYYY')AS NEW_FORMAT FROM ORDERS;
+-- Convert string to date.
+--=====SELECT TO_CHAR(ORDER_DATE,'DD-MM-YYYY')AS STRING_FORMAT FROM ORDERS;
+-- Convert date to string.
+--=====SELECT TO_CHAR(ORDER_DATE)AS STRING_FORMAT FROM ORDERS;
+-- Find week number of the year.
+--======SELECT TO_CHAR(SYSDATE,'WW')AS WEEK;
+-- Find day name from date.
+--=====SELECT TO_CHAR(SYSDATE,'DAY')AS DAY_NAME;
+-- Find quarter of the year.
+--=====SELECT TO_CHAR(SYSDATE,'Q')AS QUARTER;
+-- Calculate age from DOB.
+--=====SELECT 2003-02-27,(SYSDATE-2003-02-27)/12 AS DOB;
+-- Check if date is weekend.
+--======SELECT SYSDATE,CASE WHEN TO_CHAR(SYSDATE,'DAY') IN ('SAT','SUN') THEN'WEEKEND'ELSE'WEEKDAY'END;
+-- Find next Monday after a given date.
+--======SELECT SYSDATE,NEXT_DAY(SYSDATE,'MONDAY')AS NECT_DATE;
+---========================NULL VALUE FUNCTIONS =====================
+-- Replace NULL price with 0.
+--=====SELECT NVL(UNIT_PRICE,0)AS REPLACED_VALUES FROM ORDERS;
+-- Replace NULL Customer_Name with 'Unknown'.
+--====SELECT CUSTOMER_NAME,NVL(CUSTOMER_NAME,'UNKNOWN')AS REPLACED_VALUES FROM ORDERS;
+-- Count NULL values in Product_Name.
+--=====SELECT COUNT(*)AS COUNTS_PRODUCTS FROM ORDERS WHERE PRODUCT_NAME IS NULL;
+-- Find rows where Order_Date is NULL.
+--=====SELECT COUNT(*)AS NULL_DATE FROM ORDERS WHERE ORDER_DATE IS NULL;
+-- Use COALESCE to return first non-null value.
+--=====SELECT UNIT_PRICE,COALESCE(UNIT_PRICE,0) AS COA FROM ORDERS;
+-- Use NVL to replace NULL values.
+--======SELECT NVL(UNIT_PRICE,0)AS NUL FROM ORDERS;
+-- Use IFNULL function.
+--======SELECT UNIT_PRICES,IFNULL(UNIT_PRICES,0)AS NUL_PRICES FROM ORDERS;
+-- Check if column is NULL.
+--=====SELECT * FROM ORDERS WHERE UNIT_PRICE IS NULL;
+-- Check if column is NOT NULL.
+--===SELECT * FROM ORDERS WHERE UNIT_PRICE IS NOT NULL;
+--======SELECT UNIT_PRICE,QUANTITY,NULLIF(UNIT_PRICE,QUANTITY)AS NUL FROM ORDERS;
+--=====SELECT PRODUCT_NAME,NULLIF(PRODUCT_NAME,'')AS NUL FROM ORDERS;
+-- Count non-null values.
+--====SELECT COUNT (*)FROM  ORDERS WHERE UNIT_PRICE IS NOT NULL;
+-- Filter records where price is NULL or 0.
+--===SELECT COUNT (*)FROM  ORDERS WHERE UNIT_PRICE IS  NULL;
+-- Use CASE to handle NULL values.
+--====SELECT UNIT_PRICE,CASE WHEN UNIT_PRICE IS NULL THEN 0 ELSE UNIT_PRICE END FROM ORDERS;
+-- Compare NULL values properly.
+--====SELECT *FROM ORDERS WHERE UNIT_PRICE IS NULL;
+-- Handle NULL in aggregation.
+-- Find average excluding NULL values.
+--=====SELECT UNIT_PRICE,SELECT(AVG(UNIT_PRICE)FROM ORDERS)AS AVERAGE_N FROM ORDERS;
+-- Find sum ignoring NULL values.
+-- Identify columns containing NULL using metadata.
+-- Convert NULL to default system date.
